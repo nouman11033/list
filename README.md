@@ -1,20 +1,8 @@
-# Kingdom 2362 lists
+# Kingdom 2362 Prime roster (static)
 
-- [Prime roster](./index.html) — static snapshot
-- [SVR → TFU move tracker](./move-tracker.html) — live Kingshot check
+Static Prime 100 snapshot for SVR + TFU.
 
-## Host the tracker (needs API)
+- Open [index.html](./index.html) or enable GitHub Pages.
 
-GitHub Pages can serve the HTML, but **live tracking needs a backend**.
-
-### Vercel (recommended)
-
-1. Import this repo in [Vercel](https://vercel.com).
-2. Add env var `KINGSHOT_API_KEY` (your `kss_…` key).
-3. Deploy.
-4. Open `/move-tracker.html` on the Vercel URL.
-
-### Local merge app
-
-In `merger-static`, set `KINGSHOT_API_KEY` in `.env.local`, run `npm run dev`, open:
-http://localhost:3000/move-tracker.html
+Live SVR → TFU move tracking lives in a separate repo:
+https://github.com/nouman11033/svr-tfu-move-tracker
