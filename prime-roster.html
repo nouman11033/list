@@ -247,6 +247,21 @@
       font-size: 11px;
       color: var(--muted);
     }
+    tr.joke-row {
+      background: rgba(251, 191, 36, 0.08);
+    }
+    tr.joke-row:hover {
+      background: rgba(251, 191, 36, 0.14);
+    }
+    tr.joke-row .rank { color: #fbbf24; }
+    .joke-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fcd34d;
+    }
     @media (min-width: 640px) { .stat { width: 11.5rem; } }
   </style>
 </head>
@@ -1817,12 +1832,28 @@
                   <span class="role" style="color:#c4b5fd;background:rgba(139,92,246,0.15);border-color:rgba(167,139,250,0.5)">R4</span>
                 </td>
               </tr>
+              <tr class="joke-row" data-alliance="JOKE">
+                <td class="rank">#101</td>
+                <td class="name" title="NOOP — people's vote special addition">NOOP</td>
+                <td class="num" title="11,200,000 power">11.2M</td>
+                <td class="num" title="Town center / HQ level">—</td>
+                <td class="alliance">
+                  <span class="joke-tag">
+                    <span class="dot" style="background:#fbbf24"></span>
+                    <span class="al-text">People's vote · special</span>
+                  </span>
+                </td>
+                <td class="role-cell">
+                  <span class="role" style="color:#fcd34d;background:rgba(251,191,36,0.15);border-color:rgba(251,191,36,0.5)">★</span>
+                </td>
+              </tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <p class="footer-note">HQ levels from StratForge Furnace · Kingdom 2362</p>
+    <p class="footer-note">NOOP is a special addition — people vote for him. Power 11.2M. He’s the 101st person.</p>
   </main>
   <script>
     (function () {
@@ -1834,13 +1865,17 @@
       function applyFilter(filter) {
         var visible = 0;
         rows.forEach(function (row) {
-          var show = filter === "all" || row.getAttribute("data-alliance") === filter;
+          var alliance = row.getAttribute("data-alliance");
+          var show =
+            filter === "all"
+              ? true
+              : alliance === filter; // joke row only on complete list
           row.classList.toggle("is-hidden", !show);
           if (show) visible += 1;
         });
-        badge.textContent = visible + " / 100";
+        badge.textContent = filter === "all" ? visible + " / 100 (+NOOP)" : visible + " shown";
         if (filter === "all") {
-          banner.textContent = "Prime roster is full (100/100).";
+          banner.textContent = "Prime roster is full (100/100). NOOP is a special +1.";
         } else {
           banner.textContent = "Showing " + visible + " selected " + filter + " players from Prime.";
         }
